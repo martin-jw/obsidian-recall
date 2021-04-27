@@ -4,9 +4,13 @@ This plugin for [Obsidian](https://obsidian.md/) implements a spaced repetition 
 See [planned features](https://github.com/martin-jw/obsidian-srs#planned-features) for upcoming updates. To request a feature that isn't already planned, or to report a bug, please [raise an issue](https://github.com/martin-jw/obsidian-srs/issues).
 
 ## Quick Guide
-1.[install](https://github.com/martin-jw/obsidian-srs#installation) the plugin.
+
+1. [install](https://github.com/martin-jw/obsidian-srs#installation) the plugin.
+
 2. Select the [algorithm](https://github.com/martin-jw/obsidian-srs#algorithms) you want to use.
+
 3. Start [tracking notes](https://github.com/martin-jw/obsidian-srs#tracking-notes).
+
 4. [Review](https://github.com/martin-jw/obsidian-srs#review) them!
 
 ## Installation
