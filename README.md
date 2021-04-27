@@ -50,31 +50,31 @@ Since SRS algorithms can be quite different, an algorithm can define it's own da
 
 Because of this, switching algorithms currently requires a reload of the plugin.
 
-### Currently available algorithms
+## Currently available algorithms
 
-#### Anki
+### Anki
 
 This is an implementation of the [Anki algorithm](https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html). 
 
 It uses the same data structure as the SM2 algorithm, and as such you can switch between them without losing data.
 
-##### Settings
+#### Settings
 
 For more details of the settings available see [Anki's documentation](https://docs.ankiweb.net/#/deck-options).
 
-#### SM2
+### SM2
 
 An implementation of SuperMemo's algorithm, [SM2](https://www.supermemo.com/en/archives1990-2015/english/ol/sm2). This is the algorithm that Anki's algorithm is based on.
 
 This algorithm currently exposes no settings. It uses the same data structure as the Anki algorithm, and as such you can switch between them without losing data.
 
-#### Leitner
+### Leitner
 
 This is an implementation of the [Leitner System](https://www.wikiwand.com/en/Leitner_system), also known as the shoebox method. Items are separated into "boxes" (called stages in the settings) and each box has a set interval of time between reviews. 
 
 When an item is marked as correct it graduates to the next stage. If an item is marked as wrong it is returned to the first stage.
 
-##### Settings
+#### Settings
 
 **Stages** - The number of stages. Changing this updates the maximum number of stages available to the system.
 
