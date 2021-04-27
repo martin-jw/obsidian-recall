@@ -1,0 +1,69 @@
+.srs-bar-tracked {
+    color: green;
+}
+
+.srs-button-div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    height: 33%;
+    max-height: 400px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding-top: 20px;
+
+    border-top-width: 3px;
+    border-top-style: solid;
+    border-top-color: var(--background-modifier-border);
+}
+
+.srs-flex-row {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-top: 10px;
+}
+
+.srs-review-wrapper {
+    position: relative;
+    max-width: 700px;
+    min-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timings-setting-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px 0 18px 0;
+}
+
+.timings-setting-item .setting-item-control {
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex-shrink: 1;
+    flex-grow: 0;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.timings-setting-item input {
+    margin-top: 3px;
+}
+
+.srs-answer-content {
+    margin-top: 12px;
+    padding-top: 12px;
+
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: var(--background-modifier-border);
+}

@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-srs",
+	"name": "SRS",
+	"version": "0.1.0",
+	"minAppVersion": "0.9.12",
+	"description": "Spaced Repetition System built into Obsidian.",
+	"author": "Martin Jirlow",
+	"authorUrl": "https://github.com/martin-jw/obsidian-srs",
+	"isDesktopOnly": false
+}
