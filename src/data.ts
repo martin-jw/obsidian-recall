@@ -1,9 +1,11 @@
 import ObsidianSrsPlugin from "./main";
 import { DateUtils } from "./utils";
+import { DataLocation } from "./settings";
 
 import { TFile, TFolder, Notice } from "obsidian";
 
-const DEFAULT_DATA_PATH: string = "./tracked_files.json";
+const ROOT_DATA_PATH: string = "./tracked_files.json";
+const PLUGIN_DATA_PATH: string = "./.obsidian/plugins/obsidian-srs/tracked_files.json";
 
 interface SrsData {
     queue: number[];
@@ -56,13 +58,50 @@ export class DataStore {
     plugin: ObsidianSrsPlugin;
     dataPath: string;
 
-    constructor(plugin: ObsidianSrsPlugin, path?: string) {
+    constructor(plugin: ObsidianSrsPlugin) {
         this.plugin = plugin;
-        if (path != null) {
-            this.dataPath = path;
-        } else {
-            this.dataPath = DEFAULT_DATA_PATH;
+        this.dataPath = this.getStorePath();
+    }
+
+    getStorePath(): string {
+        const dataLocation = this.plugin.settings.dataLocation;
+        if (dataLocation == DataLocation.PluginFolder) {
+            return PLUGIN_DATA_PATH;
+        } else if (dataLocation == DataLocation.RootFolder) {
+            return ROOT_DATA_PATH;
         }
+    }
+
+
+    moveStoreLocation(): boolean {
+        // TODO: Validate folder
+        const adapter = this.plugin.app.vault.adapter;
+
+        console.log(this.plugin.settings.dataLocation);
+        let newPath = this.getStorePath();
+        console.log(newPath);
+        if (newPath === this.dataPath) {
+            return false;
+        }
+
+        try {
+            this.save();
+            adapter.remove(this.dataPath).then(() => {
+                this.dataPath = newPath;
+                new Notice("Successfully moved data file!");
+                return true;
+            }, (e) => {
+                this.dataPath = newPath;
+                new Notice("Unable to delete old file.");
+                console.log(e);
+                return true;
+            })
+        } catch (e) {
+            new Notice("Unable to change location!");
+            console.log(e);
+            return false;
+        }
+
     }
 
     async load() {

@@ -14,9 +14,22 @@ export const algorithms: Record<string, SrsAlgorithm> = {
     Leitner: new LeitnerAlgorithm(),
 };
 
+export enum DataLocation {
+    PluginFolder = "In Plugin Folder",
+    RootFolder = "In Vault Folder"
+}
+
+const locationMap: Record<string, DataLocation> = {
+    "In Vault Folder": DataLocation.RootFolder,
+    "In Plugin Folder": DataLocation.PluginFolder,
+};
+
+
 export interface SrsPluginSettings {
     maxNewPerDay: number;
     repeatItems: boolean;
+    dataLocation: DataLocation;
+    locationPath: string;
     algorithm: string;
     algorithmSettings: any;
 }
@@ -24,6 +37,8 @@ export interface SrsPluginSettings {
 export const DEFAULT_SETTINGS: SrsPluginSettings = {
     maxNewPerDay: 20,
     repeatItems: true,
+    dataLocation: DataLocation.PluginFolder,
+    locationPath: "",
     algorithm: Object.keys(algorithms)[0],
     algorithmSettings: Object.values(algorithms)[0].settings,
 };
@@ -44,6 +59,7 @@ export default class SrsSettingTab extends PluginSettingTab {
 
         this.addNewPerDaySetting(containerEl);
         this.addRepeatItemsSetting(containerEl);
+        this.addDataLocationSettings(containerEl);
         this.addAlgorithmSetting(containerEl);
 
         containerEl.createEl("h1").innerText = "Algorithm Settings";
@@ -53,6 +69,28 @@ export default class SrsSettingTab extends PluginSettingTab {
             plugin.settings.algorithmSettings = settings;
             plugin.saveData(plugin.settings);
         });
+    }
+
+    addDataLocationSettings(containerEl: HTMLElement) {
+        const plugin = this.plugin;
+
+        new Setting(containerEl)
+            .setName("Data Location")
+            .setDesc("Where to store the data file for spaced repetition items.")
+            .addDropdown((dropdown) => {
+                dropdown.setValue(plugin.settings.dataLocation);
+                Object.keys(DataLocation).forEach((val) => {
+                    dropdown.addOption(val, DataLocation[val as keyof typeof DataLocation]);
+                })
+
+                console.log(plugin.settings.dataLocation);
+                dropdown.onChange((val) => {
+                    const loc = DataLocation[val as keyof typeof DataLocation];
+                    plugin.settings.dataLocation = loc;
+                    plugin.store.moveStoreLocation();
+                    plugin.saveData(plugin.settings);
+                });
+            });
     }
 
     addRepeatItemsSetting(containerEl: HTMLElement) {
