@@ -226,8 +226,10 @@ export class ReviewAnswerView implements ReviewSubView {
         this.containerEl = view.wrapperEl.createDiv("srs-review-answer");
         this.containerEl.hidden = true;
 
-        this.questionEl = this.containerEl.createDiv("srs-question-content");
-        this.answerEl = this.containerEl.createDiv("srs-answer-content");
+        let wrapperEl = this.containerEl.createDiv('srs-qa-wrapper');
+
+        this.questionEl = wrapperEl.createDiv("srs-question-content");
+        this.answerEl = wrapperEl.createDiv("srs-answer-content");
 
         let buttonDiv = this.containerEl.createDiv("srs-button-div");
 

@@ -2,6 +2,12 @@
     color: green;
 }
 
+.srs-qa-wrapper {
+    position: absolute;
+    height: 67%;
+    overflow: auto;
+}
+
 .srs-button-div {
     position: absolute;
     bottom: 0;
