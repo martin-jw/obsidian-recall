@@ -458,6 +458,9 @@ export class DataStore {
                         newAdd += 1;
                     }
                 } else if (item.nextReview <= now.getTime()) {
+                    if (this.isInRepeatQueue(id)) {
+                        data.repeatQueue.remove(id);
+                    }
                     if (!this.isQueued(id)) {
                         data.queue.push(id);
                         oldAdd += 1;
