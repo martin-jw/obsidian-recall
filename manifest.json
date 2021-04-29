@@ -1,7 +1,7 @@
 {
 	"id": "obsidian-recall",
 	"name": "Recall",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"minAppVersion": "0.9.12",
 	"description": "A flexible and configurable Spaced Repetition System built into Obsidian.",
 	"author": "Martin Jirlow",
