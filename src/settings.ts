@@ -37,7 +37,7 @@ export interface SrsPluginSettings {
 export const DEFAULT_SETTINGS: SrsPluginSettings = {
     maxNewPerDay: 20,
     repeatItems: true,
-    dataLocation: DataLocation.PluginFolder,
+    dataLocation: DataLocation.RootFolder,
     locationPath: "",
     algorithm: Object.keys(algorithms)[0],
     algorithmSettings: Object.values(algorithms)[0].settings,
@@ -78,14 +78,13 @@ export default class SrsSettingTab extends PluginSettingTab {
             .setName("Data Location")
             .setDesc("Where to store the data file for spaced repetition items.")
             .addDropdown((dropdown) => {
-                dropdown.setValue(plugin.settings.dataLocation);
-                Object.keys(DataLocation).forEach((val) => {
-                    dropdown.addOption(val, DataLocation[val as keyof typeof DataLocation]);
+                Object.values(DataLocation).forEach((val) => {
+                    dropdown.addOption(val, val);
                 })
+                dropdown.setValue(plugin.settings.dataLocation);
 
-                console.log(plugin.settings.dataLocation);
                 dropdown.onChange((val) => {
-                    const loc = DataLocation[val as keyof typeof DataLocation];
+                    const loc = locationMap[val];
                     plugin.settings.dataLocation = loc;
                     plugin.store.moveStoreLocation();
                     plugin.saveData(plugin.settings);

@@ -77,9 +77,7 @@ export class DataStore {
         // TODO: Validate folder
         const adapter = this.plugin.app.vault.adapter;
 
-        console.log(this.plugin.settings.dataLocation);
         let newPath = this.getStorePath();
-        console.log(newPath);
         if (newPath === this.dataPath) {
             return false;
         }
@@ -92,12 +90,12 @@ export class DataStore {
                 return true;
             }, (e) => {
                 this.dataPath = newPath;
-                new Notice("Unable to delete old file.");
+                new Notice("Unable to delete old data file, please delete it manually.");
                 console.log(e);
                 return true;
             })
         } catch (e) {
-            new Notice("Unable to change location!");
+            new Notice("Unable to move data file!");
             console.log(e);
             return false;
         }

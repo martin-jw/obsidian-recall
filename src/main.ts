@@ -18,7 +18,7 @@ export default class ObsidianSrsPlugin extends Plugin {
     barItem: HTMLElement;
 
     async onload() {
-        console.log("Loading Obsidian SRS...");
+        console.log("Loading Obsidian Recall...");
 
         await this.loadSettings();
 
@@ -52,7 +52,7 @@ export default class ObsidianSrsPlugin extends Plugin {
     }
 
     onunload() {
-        console.log("Unloading Obsidian SRS. Saving tracked files...");
+        console.log("Unloading Obsidian Recall. Saving tracked files...");
         this.store.save();
     }
 
