@@ -1,10 +1,10 @@
 {
-	"id": "obsidian-srs",
-	"name": "SRS",
+	"id": "obsidian-recall",
+	"name": "Recall",
 	"version": "0.1.0",
 	"minAppVersion": "0.9.12",
-	"description": "Spaced Repetition System built into Obsidian.",
+	"description": "A flexible and configurable Spaced Repetition System built into Obsidian.",
 	"author": "Martin Jirlow",
-	"authorUrl": "https://github.com/martin-jw/obsidian-srs",
+	"authorUrl": "https://github.com/martin-jw/obsidian-recall",
 	"isDesktopOnly": false
 }

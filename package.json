@@ -1,7 +1,7 @@
 {
-  "name": "obsidian-srs",
+  "name": "obsidian-recall",
   "version": "0.1.0",
-  "description": "This is a SRS plugin for Obsidian (https://obsidian.md)",
+  "description": "Flexible and configurable spaced repetition plugin for Obsidian (https://obsidian.md)",
   "main": "main.js",
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",

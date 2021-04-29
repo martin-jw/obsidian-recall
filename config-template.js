@@ -1,3 +1,3 @@
 export default {
-    "vault-path": "/PATH/TO/VAULT/.obsidian/plugins/obsidian-srs"
+    "vault-path": "/PATH/TO/VAULT/.obsidian/plugins/obsidian-recall"
 }

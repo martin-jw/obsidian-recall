@@ -141,7 +141,7 @@ export default class SrsSettingTab extends PluginSettingTab {
                 });
             })
             .settingEl.querySelector(".setting-item-description").innerHTML =
-            'The algorithm used for spaced repetition. For more information see <a href="https://github.com/martin-jw/obsidian-srs">algorithms</a>.';
+            'The algorithm used for spaced repetition. For more information see <a href="https://github.com/martin-jw/obsidian-recall">algorithms</a>.';
     }
 
     addNewPerDaySetting(containerEl: HTMLElement) {

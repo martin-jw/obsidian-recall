@@ -5,7 +5,7 @@ import { DataLocation } from "./settings";
 import { TFile, TFolder, Notice } from "obsidian";
 
 const ROOT_DATA_PATH: string = "./tracked_files.json";
-const PLUGIN_DATA_PATH: string = "./.obsidian/plugins/obsidian-srs/tracked_files.json";
+const PLUGIN_DATA_PATH: string = "./.obsidian/plugins/obsidian-recall/tracked_files.json";
 
 interface SrsData {
     queue: number[];

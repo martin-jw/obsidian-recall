@@ -1,23 +1,23 @@
-# Spaced Repetition System in Obsidian!
+# Recall - Spaced Repetition System in Obsidian!
 This plugin for [Obsidian](https://obsidian.md/) implements a spaced repetition system for reviewing information, with any SRS algorithm.
 
-See [planned features](https://github.com/martin-jw/obsidian-srs#planned-features) for upcoming updates. To request a feature that isn't already planned, or to report a bug, please [raise an issue](https://github.com/martin-jw/obsidian-srs/issues).
+See [planned features](https://github.com/martin-jw/obsidian-recall#planned-features) for upcoming updates. To request a feature that isn't already planned, or to report a bug, please [raise an issue](https://github.com/martin-jw/obsidian-recall/issues).
 
 ## Quick Guide
 
-1. [install](https://github.com/martin-jw/obsidian-srs#installation) the plugin.
+1. [install](https://github.com/martin-jw/obsidian-recall#installation) the plugin.
 
-2. Select the [algorithm](https://github.com/martin-jw/obsidian-srs#algorithms) you want to use.
+2. Select the [algorithm](https://github.com/martin-jw/obsidian-recall#algorithms) you want to use.
 
-3. Start [tracking notes](https://github.com/martin-jw/obsidian-srs#tracking-notes).
+3. Start [tracking notes](https://github.com/martin-jw/obsidian-recall#tracking-notes).
 
-4. [Review](https://github.com/martin-jw/obsidian-srs#review) them!
+4. [Review](https://github.com/martin-jw/obsidian-recall#review) them!
 
 ## Installation
 The plugin is not yet available in Obsidian's community plugin section, so until then the plugin has to be installed manually.
 
 ### Manual installation
-In your vault, navigate to `.obsidian/plugins` and create a folder called `obsidian-srs`. Add the `main.js`, `manifest.json` and `styles.css` files from the [latest release](https://github.com/martin-jw/obsidian-srs/releases) to the folder.
+In your vault, navigate to `.obsidian/plugins` and create a folder called `obsidian-recall`. Add the `main.js`, `manifest.json` and `styles.css` files from the [latest release](https://github.com/martin-jw/obsidian-recall/releases) to the folder.
 
 ## Tracking notes
 This plugin tracks notes for review in a separate file called `tracked_files.json` in the root of the Vault. This means that you don't need to make any changes to a note that you want to review. To track a note, either right-click a note in the file explorer and click `Track Note`, or run the command `SRS: Track Note` to track the currently active file.
@@ -49,7 +49,7 @@ Any of the `SRS:` commands can be bound to hotkeys in the Obsidian `Hotkeys` sec
 
 ## Algorithms
 
-This plugin uses a modular way of adding algorithms. This means that you can choose which algorithm to use for reviews depending on your needs. Currently, only a few algorithms are implemented. If you want to request a specific algorithm to be added please file a [feature request](https://github.com/martin-jw/obsidian-srs/issues). If you feel like an algorithm is behaving incorrectly or is missing something, plase [report a bug](https://github.com/martin-jw/obsidian-srs/issues).
+This plugin uses a modular way of adding algorithms. This means that you can choose which algorithm to use for reviews depending on your needs. Currently, only a few algorithms are implemented. If you want to request a specific algorithm to be added please file a [feature request](https://github.com/martin-jw/obsidian-recall/issues). If you feel like an algorithm is behaving incorrectly or is missing something, plase [report a bug](https://github.com/martin-jw/obsidian-recall/issues).
 
 ### Changing algorithms
 
