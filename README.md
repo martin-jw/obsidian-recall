@@ -20,7 +20,7 @@ The plugin is not yet available in Obsidian's community plugin section, so until
 In your vault, navigate to `.obsidian/plugins` and create a folder called `obsidian-recall`. Add the `main.js`, `manifest.json` and `styles.css` files from the [latest release](https://github.com/martin-jw/obsidian-recall/releases) to the folder.
 
 ## Tracking notes
-This plugin tracks notes for review in a separate file called `tracked_files.json` in the root of the Vault. This means that you don't need to make any changes to a note that you want to review. To track a note, either right-click a note in the file explorer and click `Track Note`, or run the command `SRS: Track Note` to track the currently active file.
+This plugin tracks notes for review in a separate file called `tracked_files.json` in a configurable location. This means that you don't need to make any changes to a note that you want to review. To track a note, either right-click a note in the file explorer and click `Track Note`, or run the command `SRS: Track Note` to track the currently active file.
 
 You can also recursively track all notes in a folder by right-clicking a folder in the explorer and pressing `Track All Notes`.
 
@@ -94,9 +94,14 @@ When an item is marked as correct it graduates to the next stage. If an item is 
 These are features currently planned, without any inherent order of priority:
 
 - [ ] Multiple items per note.
-  - Extract separate headings as separate questions and SRS items.
+  - [ ] Extract separate headings as separate questions and SRS items.
+- [ ] More ways to identify repetition items
+  - [ ] Flashcard style: `question::answer`
+  - [ ] Different levels of headings
+  - [ ] Dividers
+  - [ ] Cloze deletions?
 - [ ] Custom queues and reviews.
-  - Leverage Obsidian's search filters to specify which notes to review, and review notes without updating their status.
+  - [ ] Leverage Obsidian's search filters to specify which notes to review, and review notes without updating their status.
 - [ ] Expose more of the SRS data to the user.
-  - Show lists of all the current items in the SRS.
-  - Expose the data of items and allow the user to change it manually.
+  - [ ] Show lists of all the current items in the SRS.
+  - [ ] Expose the data of items and allow the user to change it manually.
