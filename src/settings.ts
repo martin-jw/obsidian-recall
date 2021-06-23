@@ -28,6 +28,7 @@ const locationMap: Record<string, DataLocation> = {
 export interface SrsPluginSettings {
     maxNewPerDay: number;
     repeatItems: boolean;
+    shuffleQueue: boolean;
     dataLocation: DataLocation;
     locationPath: string;
     algorithm: string;
@@ -37,6 +38,7 @@ export interface SrsPluginSettings {
 export const DEFAULT_SETTINGS: SrsPluginSettings = {
     maxNewPerDay: 20,
     repeatItems: true,
+    shuffleQueue: true,
     dataLocation: DataLocation.RootFolder,
     locationPath: "",
     algorithm: Object.keys(algorithms)[0],
@@ -173,5 +175,21 @@ export default class SrsSettingTab extends PluginSettingTab {
                         plugin.saveData(plugin.settings);
                     })
             );
+    }
+
+    addShuffleSetting(containerEl: HTMLElement) {
+        const plugin = this.plugin;
+
+        new Setting(containerEl)
+            .setName("Shuffle Queue")
+            .setDesc(
+                "Whether or not the review queue order should be shuffled. If not the queue is in the order the items where added to the SRS.")
+            .addToggle((toggle) => {
+                toggle.setValue(plugin.settings.shuffleQueue)
+                .onChange((newValue) => {
+                    plugin.settings.shuffleQueue = newValue;
+                    plugin.saveData(plugin.settings);
+                })
+            });
     }
 }

@@ -31,3 +31,19 @@ export class ObjectUtils {
         return newObj;
     }
 }
+
+export class ArrayUtils {
+
+    /**
+     * shuffle. Shuffles the given array in place into a random order
+     * using Durstenfeld shuffle.
+     *
+     * @param {any[]} array
+     */
+    static shuffle(array: any[]) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+}
