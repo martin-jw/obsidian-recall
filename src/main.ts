@@ -5,8 +5,9 @@ import SrsAlgorithm from "./algorithms";
 import SrsSettingTab from "./settings";
 import { SrsPluginSettings, DEFAULT_SETTINGS, algorithms } from "./settings";
 import Commands from "./commands";
+import { ItemSelector, MultipleBlockSelector, SingleBlockSelector, SelectorType } from './selection';
 
-const DEBUG: boolean = false;
+const DEBUG: boolean = true;
 
 export default class ObsidianSrsPlugin extends Plugin {
     settings: SrsPluginSettings;
@@ -19,6 +20,7 @@ export default class ObsidianSrsPlugin extends Plugin {
 
     async onload() {
         console.log("Loading Obsidian Recall...");
+        if (DEBUG) console.log("DEBUG");
 
         await this.loadSettings();
 
@@ -58,6 +60,27 @@ export default class ObsidianSrsPlugin extends Plugin {
 
     async loadSettings() {
         this.settings = Object.assign(DEFAULT_SETTINGS, await this.loadData());
+
+        // Cast selectors to actual selector instances for suitable methods.
+        // There's probably some better way to do this, maybe?
+        let selectors: ItemSelector[] = [];
+        this.settings.itemSelectors.forEach((selector) => {
+            switch (<SelectorType>selector.selectorType) {
+                case SelectorType.MultipleBlocks: {
+                    selectors.push(Object.assign(new MultipleBlockSelector(), selector));
+                    break;
+                }
+                case SelectorType.SingleBlock: {
+                    selectors.push(Object.assign(new SingleBlockSelector(), selector));
+                    break;
+                }
+            }
+        });
+
+        this.settings.itemSelectors = selectors;
+        if (DEBUG) {
+            console.log("Loaded settings: ", this.settings);
+        }
     }
 
     async saveSettings() {

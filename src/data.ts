@@ -1,5 +1,5 @@
 import ObsidianSrsPlugin from "./main";
-import { DateUtils, ArrayUtils } from "./utils";
+import { DateUtils, MiscUtils } from "./utils";
 import { DataLocation } from "./settings";
 
 import { TFile, TFolder, Notice } from "obsidian";
@@ -715,7 +715,7 @@ export class DataStore {
 
         this.data.lastQueue = now.getTime();
         if (this.plugin.settings.shuffleQueue && oldAdd + newAdd > 0) {
-            ArrayUtils.shuffle(data.queue);
+            MiscUtils.shuffle(data.queue);
         }
 
         console.log(

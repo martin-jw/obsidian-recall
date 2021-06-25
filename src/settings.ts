@@ -5,6 +5,7 @@ import SrsAlgorithm from "./algorithms";
 import { LeitnerAlgorithm } from "./algorithms/leitner";
 import { Sm2Algorithm } from "./algorithms/supermemo";
 import { AnkiAlgorithm } from "./algorithms/anki";
+import { ItemSelector, MultipleBlockSelector } from "./selection";
 
 import ConfirmModal from "./modals/confirm";
 
@@ -33,6 +34,7 @@ export interface SrsPluginSettings {
     locationPath: string;
     algorithm: string;
     algorithmSettings: any;
+    itemSelectors: ItemSelector[];
 }
 
 export const DEFAULT_SETTINGS: SrsPluginSettings = {
@@ -43,6 +45,7 @@ export const DEFAULT_SETTINGS: SrsPluginSettings = {
     locationPath: "",
     algorithm: Object.keys(algorithms)[0],
     algorithmSettings: Object.values(algorithms)[0].settings,
+    itemSelectors: [],
 };
 
 export default class SrsSettingTab extends PluginSettingTab {
@@ -61,6 +64,7 @@ export default class SrsSettingTab extends PluginSettingTab {
 
         this.addNewPerDaySetting(containerEl);
         this.addRepeatItemsSetting(containerEl);
+        this.addShuffleSetting(containerEl);
         this.addDataLocationSettings(containerEl);
         this.addAlgorithmSetting(containerEl);
 

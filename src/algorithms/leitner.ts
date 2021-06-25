@@ -1,6 +1,6 @@
 import SrsAlgorithm from "./../algorithms";
 import { ReviewResult, RepetitionItem } from "./../data";
-import { DateUtils, ObjectUtils } from "./../utils";
+import { DateUtils, MiscUtils } from "./../utils";
 
 import { Setting, Notice, TextComponent } from "obsidian";
 

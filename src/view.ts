@@ -7,6 +7,7 @@ import {
     TFile,
 } from "obsidian";
 import ObsidianSrsPlugin from "./main";
+import { SingleBlockSelector, IdInsert, ItemContent } from './selection';
 
 export type ReviewMode = "question" | "answer" | "empty";
 
@@ -70,11 +71,45 @@ export class ReviewView extends FileView {
 
         this.app.vault.cachedRead(this.file).then(
             (content) => {
+                console.log(content);
                 let question: string = this.file.basename;
                 let answer: string = content.trim();
                 const metadata = this.app.metadataCache.getFileCache(this.file);
 
                 if (metadata) {
+                    if (metadata.sections) {
+
+                        let sections = [...metadata.sections];
+                        let idInserts: IdInsert[] = [];
+                        let items: Record<string, ItemContent> = {};
+                        this.plugin.settings.itemSelectors.forEach((selector) => {
+                            let newItems = selector.process(sections, idInserts, content, metadata);
+                            items = {...items, ...newItems};
+                        });
+
+                        console.log(sections);
+                        console.log(idInserts);
+                        console.log("Found ", Object.keys(items).length, " items!");
+                        console.log(items);
+
+                        //let selector = new SingleBlockSelector();
+                        //console.log(idInserts);
+                        //console.log(sections);
+                        //console.log(metadata.sections);
+
+                        //// Now insert IDs
+                        //idInserts.sort((a, b) => b.pos.offset - a.pos.offset);
+                        //let newContent = content;
+                        //idInserts.forEach((insert) => {
+                        //    newContent = [
+                        //        newContent.slice(0, insert.pos.offset),
+                        //        ' ^' + insert.id,
+                        //        newContent.slice(insert.pos.offset)
+                        //    ].join('');
+                        //});
+
+                        //this.app.vault.adapter.write(this.file.path, newContent);
+                    }
                     if (metadata.headings && metadata.headings.length > 0) {
                         question = metadata.headings[0].heading;
                         answer = content

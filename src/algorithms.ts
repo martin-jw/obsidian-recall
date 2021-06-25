@@ -1,11 +1,11 @@
 import { RepetitionItem, ReviewResult } from "./data";
-import { ObjectUtils } from "./utils";
+import { MiscUtils } from "./utils";
 
 export default abstract class SrsAlgorithm {
     settings: any;
 
     updateSettings(settings: any) {
-        this.settings = ObjectUtils.assignOnly(
+        this.settings = MiscUtils.assignOnly(
             this.defaultSettings(),
             settings
         );
