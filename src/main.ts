@@ -5,7 +5,7 @@ import SrsAlgorithm from "./algorithms";
 import SrsSettingTab from "./settings";
 import { SrsPluginSettings, DEFAULT_SETTINGS, algorithms } from "./settings";
 import Commands from "./commands";
-import { ItemSelector, MultipleBlockSelector, SingleBlockSelector, SelectorType } from './selection';
+import { ItemSelector, SelectorType } from './selection';
 
 const DEBUG: boolean = true;
 
@@ -65,16 +65,7 @@ export default class ObsidianSrsPlugin extends Plugin {
         // There's probably some better way to do this, maybe?
         let selectors: ItemSelector[] = [];
         this.settings.itemSelectors.forEach((selector) => {
-            switch (<SelectorType>selector.selectorType) {
-                case SelectorType.MultipleBlocks: {
-                    selectors.push(Object.assign(new MultipleBlockSelector(), selector));
-                    break;
-                }
-                case SelectorType.SingleBlock: {
-                    selectors.push(Object.assign(new SingleBlockSelector(), selector));
-                    break;
-                }
-            }
+            selectors.push(Object.assign(new ItemSelector(), selector));
         });
 
         this.settings.itemSelectors = selectors;

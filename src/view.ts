@@ -7,7 +7,7 @@ import {
     TFile,
 } from "obsidian";
 import ObsidianSrsPlugin from "./main";
-import { SingleBlockSelector, IdInsert, ItemContent } from './selection';
+import { IdInsert, ItemContent } from './selection';
 
 export type ReviewMode = "question" | "answer" | "empty";
 

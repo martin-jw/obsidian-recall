@@ -625,11 +625,6 @@ export class DataStore {
                 }
                 this.data.items[ind] = null;
                 removed += 1;
-
-
-
-
-
             }
         }
         trackedFile.items = newItems;

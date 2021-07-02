@@ -1,11 +1,11 @@
-import { App, Setting, Notice, PluginSettingTab } from "obsidian";
+import { Modal, App, Setting, Notice, PluginSettingTab, ButtonComponent, DropdownComponent } from "obsidian";
 import ObsidianSrsPlugin from "./main";
 
 import SrsAlgorithm from "./algorithms";
 import { LeitnerAlgorithm } from "./algorithms/leitner";
 import { Sm2Algorithm } from "./algorithms/supermemo";
 import { AnkiAlgorithm } from "./algorithms/anki";
-import { ItemSelector, MultipleBlockSelector } from "./selection";
+import { SelectorType, ItemSelector } from "./selection";
 
 import ConfirmModal from "./modals/confirm";
 
@@ -66,6 +66,7 @@ export default class SrsSettingTab extends PluginSettingTab {
         this.addRepeatItemsSetting(containerEl);
         this.addShuffleSetting(containerEl);
         this.addDataLocationSettings(containerEl);
+        this.addItemSelectionSetting(containerEl);
         this.addAlgorithmSetting(containerEl);
 
         containerEl.createEl("h1").innerText = "Algorithm Settings";
@@ -195,5 +196,91 @@ export default class SrsSettingTab extends PluginSettingTab {
                     plugin.saveData(plugin.settings);
                 })
             });
+    }
+
+    addItemSelectionSetting(containerEl: HTMLElement) {
+        const plugin = this.plugin;
+
+        new Setting(containerEl)
+            .setName("Item Settings")
+            .setDesc("Settings for how to extract items from tracked notes.")
+            .addButton((button) => {
+                button.setButtonText("Open Settings");
+                button.setCta();
+                button.onClick((evt) => {
+                    new ItemSettingsModal(this.app, this.plugin).open();
+                });
+            });
+    }
+}
+
+class ItemSettingsModal extends Modal {
+    private plugin: ObsidianSrsPlugin;
+    private selectorList: SelectorSettings[];
+
+    constructor(app: App, plugin: ObsidianSrsPlugin) {
+        super(app);
+        this.plugin = plugin;
+    }
+
+    onOpen() {
+        let {titleEl, contentEl, plugin} = this;
+
+        titleEl.createEl("h3").innerText = "Selector Settings";
+
+        // TODO: Show all item selector settings
+        this.selectorList = new Array<SelectorSettings>(plugin.settings.itemSelectors.length);
+        plugin.settings.itemSelectors.forEach((selector, i) => {
+            this.selectorList[i] = new SelectorSettings(contentEl, selector);
+        });
+
+        // TODO: Add button for adding item selector
+        new ButtonComponent(contentEl)
+            .setButtonText("Add Selector")
+            .setCta();
+
+        // TODO: Default behavior
+    }
+
+    onClose() {
+        let {titleEl, contentEl} = this;
+        contentEl.empty();
+        titleEl.empty();
+    }
+
+}
+
+class SelectorSettings {
+
+    private parentEl: HTMLElement;
+    private selector: ItemSelector;
+    private mainDiv: HTMLDivElement;
+
+    constructor(containerEl: HTMLElement, selector: ItemSelector) {
+        this.parentEl = containerEl;
+        this.selector = selector;
+        this.mainDiv = this.parentEl.createDiv('selector-settings-div');
+        this.build();
+    }
+
+    private build() {
+        let {mainDiv} = this;
+
+        mainDiv.empty();
+
+        let paragraph = mainDiv.createEl('p');
+        paragraph.innerText = "Select ";
+
+        let selectorTypes: Record<string, SelectorType> = {
+            "a single block": SelectorType.SingleBlock,
+            "multiple blocks": SelectorType.MultipleBlocks,
+        }
+
+        let dropdown = new DropdownComponent(mainDiv);
+        for (let key in selectorTypes) {
+            let value = selectorTypes[key].toString();
+            console.log("Added: ", value, ", ", key);
+            dropdown.addOption(value, key);
+        }
     }
 }
