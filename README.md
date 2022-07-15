@@ -20,7 +20,7 @@ The plugin is not yet available in Obsidian's community plugin section, so until
 In your vault, navigate to `.obsidian/plugins` and create a folder called `obsidian-recall`. Add the `main.js`, `manifest.json` and `styles.css` files from the [latest release](https://github.com/martin-jw/obsidian-recall/releases) to the folder.
 
 ## Tracking notes
-This plugin tracks notes for review in a separate file called `tracked_files.json` in a configurable location. This means that you don't need to make any changes to a note that you want to review. To track a note, either right-click a note in the file explorer and click `Track Note`, or run the command `SRS: Track Note` to track the currently active file.
+This plugin tracks notes for review in a separate file called `tracked_files.json` in a configurable location. This means that you don't need to make any changes to a note that you want to review. To track a note, either right-click a note in the file explorer and click `Track Note`, or run the command `Recall: Track Note` to track the currently active file.
 
 You can also recursively track all notes in a folder by right-clicking a folder in the explorer and pressing `Track All Notes`.
 
@@ -28,9 +28,9 @@ You can also recursively track all notes in a folder by right-clicking a folder 
 
 ### Untracking notes
 
-Untracking notes is done the same way, simply right-click a note in the explorer and click `Untrack Note`, or run the command `SRS: Untrack Note`.
+Untracking notes is done the same way, simply right-click a note in the explorer and click `Untrack Note`, or run the command `Recall: Untrack Note`.
 
-You can also recursively remove all notes in a folder from the SRS by right-clicking the folder in the explorer and pressing `Untrack All Notes`.
+You can also recursively remove all notes in a folder from the Recall by right-clicking the folder in the explorer and pressing `Untrack All Notes`.
 
 Note that untracking a note removes all information regarding the note from the system, and any progress will therefore be reset.
 
@@ -42,14 +42,14 @@ This plugin adds a status to the status bar of Obsidian. This status changes dep
 - When in Review, it shows the number of items remaining in the review.
 
 ## Reviewing Items
-To review due items, run the `SRS: Review` command. This will build the queue and open up the review view, and any items due for review will be shown.
+To review due items, run the `Recall: Review` command. This will build the queue and open up the review view, and any items due for review will be shown.
 
 ### Adding hotkeys
-Any of the `SRS:` commands can be bound to hotkeys in the Obsidian `Hotkeys` section of the settings. There are currently not hotkeys for the different responses of the review view, however it is planned.
+Any of the `Recall:` commands can be bound to hotkeys in the Obsidian `Hotkeys` section of the settings. There are currently not hotkeys for the different responses of the review view, however it is planned.
 
 ## Algorithms
 
-This plugin uses a modular way of adding algorithms. This means that you can choose which algorithm to use for reviews depending on your needs. Currently, only a few algorithms are implemented. If you want to request a specific algorithm to be added please file a [feature request](https://github.com/martin-jw/obsidian-recall/issues). If you feel like an algorithm is behaving incorrectly or is missing something, plase [report a bug](https://github.com/martin-jw/obsidian-recall/issues).
+This plugin uses a modular way of adding algorithms. This means that you can choose which algorithm to use for reviews depending on your needs. Currently, only a few algorithms are implemented. If you want to request a specific algorithm to be added please file a [feature request](https://github.com/martin-jw/obsidian-recall/issues). If you feel like an algorithm is behaving incorrectly or is missing something, please [report a bug](https://github.com/martin-jw/obsidian-recall/issues).
 
 ### Changing algorithms
 
@@ -61,7 +61,7 @@ Because of this, switching algorithms currently requires a reload of the plugin.
 
 ### Anki
 
-This is an implementation of the [Anki algorithm](https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html). 
+This is an implementation of the [Anki algorithm](https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html).
 
 It uses the same data structure as the SM2 algorithm, and as such you can switch between them without losing data.
 
@@ -77,7 +77,7 @@ This algorithm currently exposes no settings. It uses the same data structure as
 
 ### Leitner
 
-This is an implementation of the [Leitner System](https://www.wikiwand.com/en/Leitner_system), also known as the shoebox method. Items are separated into "boxes" (called stages in the settings) and each box has a set interval of time between reviews. 
+This is an implementation of the [Leitner System](https://www.wikiwand.com/en/Leitner_system), also known as the shoebox method. Items are separated into "boxes" (called stages in the settings) and each box has a set interval of time between reviews.
 
 When an item is marked as correct it graduates to the next stage. If an item is marked as wrong it is returned to the first stage.
 
